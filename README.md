@@ -3,6 +3,11 @@
 My Concerts Bot is going to suggest you the best concerts in your surroundings.
 
 ## Pre Development
+To generate .env file run this command and fill the data with your information
+```bash
+cp .env.example .env
+```
+
 To create virtual environment run this command
 ```bash
 virtualenv env
