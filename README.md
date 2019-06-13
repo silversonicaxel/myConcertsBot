@@ -21,7 +21,7 @@ To activate virtual environment
 
 To deactivate virtual environment
 ```bash
-decativate
+deactivate
 ```
 
 ### Dependencies
