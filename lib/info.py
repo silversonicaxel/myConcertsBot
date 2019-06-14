@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 import os
 import requests
 import json
+
+today = datetime.now()
+range_days = timedelta(days=7)
+future_day = today + range_days
+max_date = future_day.strftime("%Y-%m-%d")
 
 def get_info_search(search: str):
   artists = get_artists(search)
@@ -27,8 +33,7 @@ def get_artists(artist: str):
     return []
 
 def get_concerts_via_artist(artist_id: str):
-  request_url = 'https://api.songkick.com/api/3.0/artists/' + artist_id + '/calendar.json?apikey=' + os.getenv("songkick_token")
-  print(request_url)
+  request_url = 'https://api.songkick.com/api/3.0/artists/' + artist_id + '/calendar.json?max_date=' + max_date + '&apikey=' + os.getenv("songkick_token")
   response = requests.get(request_url)
   concerts = json.loads(response.content.decode('utf-8'))
 
@@ -48,7 +53,7 @@ def get_locations(location: str):
     return []
 
 def get_concerts_via_location(location_id: str):
-  request_url = 'https://api.songkick.com/api/3.0/metro_areas/' + location_id + '/calendar.json?apikey=' + os.getenv("songkick_token")
+  request_url = 'https://api.songkick.com/api/3.0/metro_areas/' + location_id + '/calendar.json?max_date=' + max_date + '&apikey=' + os.getenv("songkick_token")
   response = requests.get(request_url)
   concerts = json.loads(response.content.decode('utf-8'))
 
