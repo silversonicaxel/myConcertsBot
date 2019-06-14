@@ -9,14 +9,17 @@ load_dotenv()
 bot = Bot(token=os.getenv("telegram_token"))
 dispatcher = Dispatcher(bot)
 
+
 @dispatcher.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
-  await message.reply("Hello I am My Concerts Bot and I am here to help you in knowing the concerts you are intereted in.")
+    await message.reply("Hello I am My Concerts Bot and I am here to help you in knowing the concerts you are intereted in.")
+
 
 @dispatcher.message_handler()
 async def echo(search: types.Message):
-  await bot.send_message(search.chat.id, 'Analyzing concerts of ' + search.text + '.')
-  info.get_info_search(search.text)
+    await bot.send_message(search.chat.id, 'Analyzing concerts of ' + search.text + '.')
+    info.get_info_search(search.text)
+
 
 def poll():
-  executor.start_polling(dispatcher, skip_updates=True)
+    executor.start_polling(dispatcher, skip_updates=True)
