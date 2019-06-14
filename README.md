@@ -27,3 +27,4 @@ deactivate
 ### Dependencies
 - aiogram
 - requests
+- autopep8
