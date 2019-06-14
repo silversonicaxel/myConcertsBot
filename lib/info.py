@@ -12,16 +12,25 @@ max_date = future_day.strftime("%Y-%m-%d")
 
 
 def get_info_search(search: str):
+    artist_concerts = []
+    location_concerts = []
+
     artists = get_artists(search)
     if len(artists):
-        artists_concerts = get_concerts_via_artist(str(artists[0]['id']))
-        print(artists_concerts)
+        artist_id = str(artists[0]['id'])
+        artist_concerts_data = get_concerts_via_artist(artist_id)
+
+        for concert in artist_concerts_data:
+            print(concert)
 
     locations = get_locations(search)
     if len(locations):
-        locations_concerts = get_concerts_via_artist(
-            str(locations[0]['metroArea']['id']))
-        print(locations_concerts)
+        location_id = str(locations[0]['metroArea']['id'])
+        location_concerts_data = get_concerts_via_location(location_id)
+
+        for concert in location_concerts_data:
+            print(concert)
+
 
 
 def get_artists(artist: str):
