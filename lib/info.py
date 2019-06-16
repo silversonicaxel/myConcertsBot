@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
+from concert import Concert
 import os
 import requests
 import json
 
+
 today = datetime.now()
 range_days = timedelta(days=7)
 future_day = today + range_days
-max_date = future_day.strftime("%Y-%m-%d")
+max_date = future_day.strftime('%Y-%m-%d')
 
 
 def get_info_search(search: str):
@@ -21,7 +23,7 @@ def get_info_search(search: str):
         artist_concerts_data = get_concerts_via_artist(artist_id)
 
         for concert in artist_concerts_data:
-            print(concert)
+            artist_concerts.append(parse_concert(concert))
 
     locations = get_locations(search)
     if len(locations):
@@ -29,8 +31,21 @@ def get_info_search(search: str):
         location_concerts_data = get_concerts_via_location(location_id)
 
         for concert in location_concerts_data:
-            print(concert)
+            location_concerts.append(parse_concert(concert))
 
+    return (artist_concerts, location_concerts)
+
+
+def parse_concert(concert: object):
+    artist = concert.get('performance')[0].get('artist').get('displayName')
+    date_raw = concert.get('start').get('date')
+    date = datetime.strptime(date_raw, '%Y-%m-%d').strftime('%d %B %Y')
+    venue = concert.get('venue').get('displayName')
+    city = concert.get('venue').get('metroArea').get('displayName')
+    country = concert.get('venue').get(
+        'metroArea').get('country').get('displayName')
+
+    return Concert(artist, date, venue, city, country)
 
 
 def get_artists(artist: str):
