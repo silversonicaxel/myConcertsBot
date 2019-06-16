@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import logging
-import dispatcher
 import sys
 sys.path.append('lib/')
+import logging
+import dispatcher
 
 
 __author__ = "Alessandro Rabitti"
