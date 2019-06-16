@@ -23,13 +23,17 @@ async def echo(search: types.Message):
 
     for typed_concerts in concerts:
         for concert in typed_concerts:
-            message = concert.artist + ' ' + concert.date + ' @ ' + \
-                concert.venue + ' (' + concert.city + ', ' + concert.country + ')'
-            await bot.send_message(search.chat.id, message)
+            await bot.send_message(search.chat.id, format_message(concert))
             concerts_counter += 1
 
     if concerts_counter == 0:
         await bot.send_message(search.chat.id, 'No results for ' + search.text + '.')
+
+
+def format_message(concert: object):
+    artists_separator = ', '
+    return artists_separator.join(concert.artists) + '\n' + concert.date + \
+        ' @ ' + concert.venue + '\n(' + concert.city + ', ' + concert.country + ')'
 
 
 def poll():

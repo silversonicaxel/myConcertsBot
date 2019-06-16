@@ -37,7 +37,9 @@ def get_info_search(search: str):
 
 
 def parse_concert(concert: object):
-    artist = concert.get('performance')[0].get('artist').get('displayName')
+    artists = []
+    for artist in concert.get('performance'):
+        artists.append(artist.get('artist').get('displayName'))
     date_raw = concert.get('start').get('date')
     date = datetime.strptime(date_raw, '%Y-%m-%d').strftime('%d %B %Y')
     venue = concert.get('venue').get('displayName')
@@ -45,7 +47,7 @@ def parse_concert(concert: object):
     country = concert.get('venue').get(
         'metroArea').get('country').get('displayName')
 
-    return Concert(artist, date, venue, city, country)
+    return Concert(artists, date, venue, city, country)
 
 
 def get_artists(artist: str):

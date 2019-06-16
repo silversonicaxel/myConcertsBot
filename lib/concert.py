@@ -1,6 +1,6 @@
 class Concert:
-    def __init__(self, artist, date, venue, city, country):
-        self.artist = artist
+    def __init__(self, artists, date, venue, city, country):
+        self.artists = artists
         self.date = date
         self.venue = venue
         self.city = city
