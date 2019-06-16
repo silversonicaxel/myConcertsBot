@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from aiogram import Bot, Dispatcher, executor, types
 import info
+from concert import Concert
 
 load_dotenv()
 
@@ -30,10 +31,11 @@ async def echo(search: types.Message):
         await bot.send_message(search.chat.id, 'No results for ' + search.text + '.')
 
 
-def format_message(concert: object):
+def format_message(concert: Concert):
     artists_separator = ', '
     return artists_separator.join(concert.artists) + '\n' + concert.date + \
-        ' @ ' + concert.venue + '\n(' + concert.city + ', ' + concert.country + ')'
+        ' @ ' + concert.venue + '\n(' + concert.city + ', ' + concert.country + ')\n' + \
+        'http://www.google.com/maps/place/' + concert.latitude + ',' + concert.longitude
 
 
 def poll():

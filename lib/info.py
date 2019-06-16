@@ -43,11 +43,13 @@ def parse_concert(concert: object):
     date_raw = concert.get('start').get('date')
     date = datetime.strptime(date_raw, '%Y-%m-%d').strftime('%d %B %Y')
     venue = concert.get('venue').get('displayName')
+    latitude = concert.get('venue').get('lat')
+    longitude = concert.get('venue').get('lng')
     city = concert.get('venue').get('metroArea').get('displayName')
     country = concert.get('venue').get(
         'metroArea').get('country').get('displayName')
 
-    return Concert(artists, date, venue, city, country)
+    return Concert(artists, date, venue, latitude, longitude, city, country)
 
 
 def get_artists(artist: str):
