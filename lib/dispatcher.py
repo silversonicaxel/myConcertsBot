@@ -24,7 +24,7 @@ async def echo(search: types.Message):
     for typed_concerts in concerts:
         for concert in typed_concerts:
             message = concert.artist + ' ' + concert.date + ' @ ' + \
-                concert.venue + '(' + concert.city + ', ' + concert.country + ')'
+                concert.venue + ' (' + concert.city + ', ' + concert.country + ')'
             await bot.send_message(search.chat.id, message)
             concerts_counter += 1
 
