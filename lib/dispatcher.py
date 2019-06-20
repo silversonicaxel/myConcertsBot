@@ -33,9 +33,8 @@ async def echo(search: types.Message):
 
 def format_message(concert: Concert):
     artists_separator = ', '
-    return artists_separator.join(concert.artists) + '\n' + concert.date + \
-        ' @ ' + concert.venue + '\n(' + concert.city + ', ' + concert.country + ')\n' + \
-        'http://www.google.com/maps/place/' + concert.latitude + ',' + concert.longitude
+    return artists_separator.join(concert.artists) + '\n' + concert.date + ' @ ' + concert.venue + '\n(' + concert.city + \
+        ', ' + concert.country + ')\n' + 'http://www.google.com/maps/place/' + concert.latitude + ',' + concert.longitude
 
 
 def poll():
