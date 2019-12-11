@@ -8,6 +8,11 @@ To generate .env file run this command and fill the data with your information
 cp .env.example .env
 ```
 
+To install depdencencies
+```bash
+pip install -r requirements.txt
+```
+
 To create virtual environment run this command
 ```bash
 virtualenv env
