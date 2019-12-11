@@ -17,45 +17,47 @@ async def send_welcome(message: types.Message):
 
 
 @dispatcher.message_handler(commands=['artist'])
-async def echo_concerts_via_artist(artist_search: types.Message):
-    await bot.send_message(artist_search.chat.id, 'Analyzing concerts of ' + artist_search.text + '.')
-    concerts = info.get_info_artist(artist_search.text)
+async def echo_concerts_via_artist(message: types.Message):
+    artist_search = message.get_args()
+    await bot.send_message(message.chat.id, 'Analyzing concerts of ' + artist_search + '.')
+    concerts = info.get_info_artist(artist_search)
 
     if len(concerts) == 0:
-        await bot.send_message(artist_search.chat.id, 'No results for ' + artist_search.text + '.')
+        await bot.send_message(message.chat.id, 'No results for ' + artist_search + '.')
     else:
         for concert in concerts:
-            await bot.send_message(artist_search.chat.id, format_message(concert))
+            await bot.send_message(message.chat.id, format_message(concert))
 
 
 @dispatcher.message_handler(commands=['city'])
-async def echo_concerts_via_city(city_search: types.Message):
-    await bot.send_message(city_search.chat.id, 'Analyzing concerts in ' + city_search.text + '.')
-    concerts = info.get_info_search(city_search.text)
+async def echo_concerts_via_city(message: types.Message):
+    city_search = message.get_args()
+    await bot.send_message(message.chat.id, 'Analyzing concerts in ' + city_search + '.')
+    concerts = info.get_info_search(city_search)
     concerts_counter = 0
 
     for typed_concerts in concerts:
         for concert in typed_concerts:
-            await bot.send_message(city_search.chat.id, format_message(concert))
+            await bot.send_message(message.chat.id, format_message(concert))
             concerts_counter += 1
 
     if concerts_counter == 0:
-        await bot.send_message(city_search.chat.id, 'No results for ' + city_search.text + '.')
+        await bot.send_message(message.chat.id, 'No results for ' + city_search + '.')
 
 
 @dispatcher.message_handler()
-async def echo_concerts(search: types.Message):
-    await bot.send_message(search.chat.id, 'Analyzing concerts related to ' + search.text + '.')
-    concerts = info.get_info_search(search.text)
+async def echo_concerts(message: types.Message):
+    await bot.send_message(message.chat.id, 'Analyzing concerts related to ' + message.text + '.')
+    concerts = info.get_info_search(message.text)
     concerts_counter = 0
 
     for typed_concerts in concerts:
         for concert in typed_concerts:
-            await bot.send_message(search.chat.id, format_message(concert))
+            await bot.send_message(message.chat.id, format_message(concert))
             concerts_counter += 1
 
     if concerts_counter == 0:
-        await bot.send_message(search.chat.id, 'No results for ' + search.text + '.')
+        await bot.send_message(message.chat.id, 'No results for ' + message.text + '.')
 
 
 def format_message(concert: Concert):
