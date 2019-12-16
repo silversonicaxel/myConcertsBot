@@ -1,6 +1,5 @@
 ansible==2.6.18
 asn1crypto==0.24.0
-aiogram==2.4
 bcrypt==3.1.4
 cffi==1.11.5
 cryptography==2.4.2
