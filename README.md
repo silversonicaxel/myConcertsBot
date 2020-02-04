@@ -1,6 +1,20 @@
 # My Concerts Bot
 
-My Concerts Bot is going to suggest you the best concerts in your surroundings.
+@MyConcertsBot is going to suggest you the best concerts in your surroundings in Telegram.
+
+## Usage
+
+Commands to search for concerts of artists:
+
+`/artist Verdena`
+`/artist Oasis`
+
+Commands to search for concerts in a city:
+
+`/city Rome`
+`/city Amsterdam`
+
+
 
 ## Development
 To generate .env file run this command and fill the data with your information
