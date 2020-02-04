@@ -2,26 +2,25 @@
 
 My Concerts Bot is going to suggest you the best concerts in your surroundings.
 
-## Pre Development
+## Development
 To generate .env file run this command and fill the data with your information
 ```bash
 cp .env.example .env
 ```
 
-To install depdencencies
-```bash
-pip install -r requirements.txt
-```
-
 To create virtual environment run this command
 ```bash
-virtualenv env
+virtualenv -p python3 env
 ```
 
-## Development
 To activate virtual environment
 ```bash
 . env/bin/activate
+```
+
+To install depdencencies
+```bash
+pip3 install -r requirements.txt
 ```
 
 To deactivate virtual environment
