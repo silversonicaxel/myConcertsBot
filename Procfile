@@ -1,1 +1,1 @@
-web: python3 main.py
+web: . env/bin/activate && python3.7 main.py
